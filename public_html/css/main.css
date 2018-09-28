@@ -40,18 +40,23 @@ html, body {
     display: none;
     position: fixed;
     z-index: 10;
-    height: 100%;
+    height: calc(100vh - 25px);
     width: 200px;
-    margin-bottom: 50px;
     right: 0;
     top: 0;
     background-color: rgba(11,11,11, 0.6);
     padding-bottom: 50px;
 }
 
+.second {
+    //display: none;
+    z-index: 10;
+}
+
 .overlay-box {
     background-color: rgba(11,11,11, 0.6);
     border: 1px solid #000;
+    color: white;
     z-index: 12;
     text-align:center;
     height: 200px;/*height needs to be set*/
@@ -84,16 +89,12 @@ html, body {
 
 }
 
-.footer {
-    
-    display: none;
-    z-index: 9;
+.header {
+    z-index: 12;
     position: absolute;
-    //display: none;
     width: 100%;
     height: 100%;
-    //border: 1px solid black;
-
+    background-color: white;
 }
 
 

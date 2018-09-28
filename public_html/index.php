@@ -20,22 +20,30 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body>
-        <div class="WallOfPictures">
-            <div class="row">
-                <br><br><br><br>
-                <center>
-                    <img id="ImgWall" src="https://i.ytimg.com/vi/wSTt04rOwa8/maxresdefault.jpg" width="300" height="200"/>
-                </center>
-            </div>
+        <div class='header'>
+            <center><h1><b>HEADER</b></h1></center>
         </div>
-        <div class="map">
+        <div class='second'>
+            <div class="WallOfPictures">
+                <div class="row">
+                    <br><br><br><br>
+                    <center>
+                        <img id="ImgWall" src="https://i.ytimg.com/vi/wSTt04rOwa8/maxresdefault.jpg" width="300" height="200"/>
+                    </center>
+                </div>
+            </div>
+            <div class="map">
                 <div id="mapHome"></div>
+            </div>
         </div>
         <?php include('includes/navright.html'); ?>
         <div id="navBottom"><button id="showRight">NavRight</button><button id="showOverlay">Overlay</button></div>
-        <div class="overlay-box"></div>
-        <div class="footer">
-            <h1>FOOTER</h1>
+        <div class="overlay-box">
+            <center>
+                <h3>Jusqu'à quelle heure dure cet évenement ?</h3>
+
+                <textarea></textarea>
+            </center>
         </div>
     </body>
     <script>
@@ -47,72 +55,76 @@
         }).addTo(mymap);
 
         window.addEventListener('wheel', function (e) {
-            if (e.deltaY < 0) {
+            if (e.deltaY < 10) {
                 //scroll up
             }
-            if (e.deltaY > 0) {
+            if (e.deltaY > 10) {
                 //scroll down
-                $(".WallOfPictures").slideUp("slow");
-                $("#navBottom").slideDown("slow");
+                if($(".header").is(":visible")) {
+                    $(".header").slideUp("slow");
+                }   else {
+                    $(".WallOfPictures").slideUp("slow");
+                    $("#navBottom").slideDown("slow");
+                }
             }
         });
-        
-        $("#showOverlay").click(function() {
-            if($(".overlay-box").is(":visible"))   {
+
+        $("#showOverlay").click(function () {
+            if ($(".overlay-box").is(":visible")) {
                 $(".overlay-box").slideUp("slow");
-            }   else {
+            } else {
                 $(".overlay-box").slideDown("slow");
             }
         });
-        $("#showRight").click(function() {
-            if($("#navRight").is(":visible"))   {
+        $("#showRight").click(function () {
+            if ($("#navRight").is(":visible")) {
                 $("#navRight").slideUp("slow");
-            }   else {
+            } else {
                 $("#navRight").slideDown("slow");
             }
         });
-        
-         var UrlApi = "http://localhost/hackaton/myprovence/public/api/instas";
-         
-         fetch(UrlApi)
-         .then(function (reponse) {
-         return reponse.json();
-         })
-         .then(function (objetJson) {
-         //Nombres de pages à charger
-         var LastPage = objetJson['hydra:totalItems'] / 100;
-         var NbPages = Math.ceil(LastPage);
-         
-         for (var page = 1; page < NbPages + 1; page++) {
-         var url = UrlApi + '?page=' + page;
-         fetch(url)
-         .then(function (response) {
-         // SI ON VEUT GERER DU JSON
-         // ON VA TRANSFORMER LE RESULTAT EN OBJET JSON
-         return response.json();
-         })
-         .then(function (objetJson) {
-         var tableauInfo = objetJson["hydra:member"];
-         // BOUCLE POUR PARCOURIR LES INFOS UNE PAR UNE
-         for (var index = 0; index < tableauInfo.length; index++) {
-         
-         var infoCourante = tableauInfo[index];
-         
-         var title = infoCourante.title;
-         var latitude = infoCourante.latitude;
-         var longitude = infoCourante.longitude;
-         var description = infoCourante.description;
-         var publicationDate = infoCourante.publicationDate;
-         var image = infoCourante.lowResolution;
-         if (image)
-         {
-         
-         var marker = L.marker([latitude, longitude]).addTo(mymap)
-               .bindPopup('<img class="img-fluid" src="' + image + '" />');
-         }
-         }
-         });
-         }
-         });
+
+        /*var UrlApi = "http://localhost/hackaton/myprovence/public/api/instas";
+
+        fetch(UrlApi)
+                .then(function (reponse) {
+                    return reponse.json();
+                })
+                .then(function (objetJson) {
+                    //Nombres de pages à charger
+                    var LastPage = objetJson['hydra:totalItems'] / 100;
+                    var NbPages = Math.ceil(LastPage);
+
+                    for (var page = 1; page < NbPages + 1; page++) {
+                        var url = UrlApi + '?page=' + page;
+                        fetch(url)
+                                .then(function (response) {
+                                    // SI ON VEUT GERER DU JSON
+                                    // ON VA TRANSFORMER LE RESULTAT EN OBJET JSON
+                                    return response.json();
+                                })
+                                .then(function (objetJson) {
+                                    var tableauInfo = objetJson["hydra:member"];
+                                    // BOUCLE POUR PARCOURIR LES INFOS UNE PAR UNE
+                                    for (var index = 0; index < tableauInfo.length; index++) {
+
+                                        var infoCourante = tableauInfo[index];
+
+                                        var title = infoCourante.title;
+                                        var latitude = infoCourante.latitude;
+                                        var longitude = infoCourante.longitude;
+                                        var description = infoCourante.description;
+                                        var publicationDate = infoCourante.publicationDate;
+                                        var image = infoCourante.lowResolution;
+                                        if (image)
+                                        {
+
+                                            var marker = L.marker([latitude, longitude]).addTo(mymap)
+                                                    .bindPopup('<img class="img-fluid" src="' + image + '" />');
+                                        }
+                                    }
+                                });
+                    }
+                });*/
     </script>
 </html>
