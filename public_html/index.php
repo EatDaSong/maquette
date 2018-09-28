@@ -31,12 +31,7 @@
         <div class="map">
                 <div id="mapHome"></div>
         </div>
-        <div id="navRight">
-            test
-        </div>
-        <div id="navLeft">
-            test
-        </div>
+        <?php include('includes/navright.html'); ?>
         <div class="footer">
             <h1>FOOTER</h1>
         </div>
