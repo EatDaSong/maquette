@@ -47,6 +47,7 @@ html, body {
     top: 0;
     background-color: rgba(11,11,11, 0.6);
     padding-bottom: 50px;
+    overflow: auto;
 }
 
 .overlay-box {
@@ -85,7 +86,7 @@ html, body {
 }
 
 .footer {
-    
+
     display: none;
     z-index: 9;
     position: absolute;
@@ -95,18 +96,3 @@ html, body {
     //border: 1px solid black;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
