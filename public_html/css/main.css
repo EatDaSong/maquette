@@ -67,6 +67,7 @@ html, body {
 
 #navBottom {
     position: fixed;
+    display: none;
     z-index: 10;
     height: 25px;
     width: 100%;

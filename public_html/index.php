@@ -53,6 +53,7 @@
             if (e.deltaY > 0) {
                 //scroll down
                 $(".WallOfPictures").slideUp("slow");
+                $("#navBottom").slideDown("slow");
             }
         });
         
