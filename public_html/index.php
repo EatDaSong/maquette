@@ -32,6 +32,8 @@
                 <div id="mapHome"></div>
         </div>
         <?php include('includes/navright.html'); ?>
+        <div id="navBottom"><button id="showRight">NavRight</button><button id="showOverlay">Overlay</button></div>
+        <div class="overlay-box"></div>
         <div class="footer">
             <h1>FOOTER</h1>
         </div>
@@ -51,6 +53,21 @@
             if (e.deltaY > 0) {
                 //scroll down
                 $(".WallOfPictures").slideUp("slow");
+            }
+        });
+        
+        $("#showOverlay").click(function() {
+            if($(".overlay-box").is(":visible"))   {
+                $(".overlay-box").slideUp("slow");
+            }   else {
+                $(".overlay-box").slideDown("slow");
+            }
+        });
+        $("#showRight").click(function() {
+            if($("#navRight").is(":visible"))   {
+                $("#navRight").slideUp("slow");
+            }   else {
+                $("#navRight").slideDown("slow");
             }
         });
         
@@ -88,15 +105,9 @@
          var image = infoCourante.lowResolution;
          if (image)
          {
-         var circle = L.circle([latitude, longitude], {
-         color: 'red',
-         fillColor: '#f03',
-         fillOpacity: 0.5,
-         radius: 500
-         }).addTo(mymap).bindPopup('<img class="img-fluid" src="' + image + '" />');
          
-         //var marker = L.marker([latitude, longitude]).addTo(mymap)
-         //      .bindPopup('<img class="img-fluid" src="' + image + '" />');
+         var marker = L.marker([latitude, longitude]).addTo(mymap)
+               .bindPopup('<img class="img-fluid" src="' + image + '" />');
          }
          }
          });
